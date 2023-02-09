@@ -5,12 +5,11 @@
       <div class="w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
         <!--Lead Card-->
         <div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
-          <a
-            href="post.html"
+          <div
             class="flex flex-wrap no-underline hover:no-underline"
           >
             <div class="w-full md:w-2/3 rounded-t">
-              <nuxt-img class="h-full w-full shadow lazy" src="https://source.unsplash.com/collection/494263/800x600" />
+              <nuxt-img preload class="h-full w-full shadow lazy" src="https://source.unsplash.com/collection/494263/800x600" />
             </div>
 
             <div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
@@ -39,12 +38,13 @@
                     data-tippy-content="Author Name"
                     src="https://i.pravatar.cc/300"
                     alt="Avatar of Author"
+                    preload
                   />
                   <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         </div>
         <!--/Lead Card-->
 
@@ -59,13 +59,14 @@
           <div class="max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center">
             <input
               type="text"
-              v-model="inputVal"
+              v-model="title"
               placeholder="value"
               id="input-article"
               class="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none"
+
             />
             <button
-              @click="addArticle(inputVal, description, image)"
+              @click="addArticle(title, description, image)"
               class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400"
             >Add
             </button>
@@ -86,7 +87,7 @@
               class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg"
             >
             <NuxtLink class="flex flex-wrap no-underline" :to="`/blog/${post.id}`">
-                <nuxt-img class="h-64 w-full rounded-t pb-6 object-cover lazy" :src="post.yoast_head_json.og_image[0].url" />
+                <nuxt-img preload class="h-64 w-full rounded-t pb-6 object-cover lazy" :src="post.yoast_head_json.og_image[0].url" />
                 <div class="w-full font-bold text-xl text-gray-900 px-6">
                   {{ post.title.rendered }}
                 </div>
@@ -95,7 +96,6 @@
             </div>
           </div>
         </div>
-
         </div>
         <!--/ Post Content-->
       </div>
@@ -109,6 +109,8 @@
 
   const { posts, loading, error } = storeToRefs(usePostStore())
   const { fetchPosts, addArticle } = usePostStore()
+
+  const title = ref();
+
   fetchPosts()
 </script>
-

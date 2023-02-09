@@ -5,7 +5,7 @@
             class="flex flex-wrap no-underline hover:no-underline"
           >
             <div class="w-full md:w-2/3 rounded-t">
-              <nuxt-img class="h-full w-full shadow lazy" src="https://source.unsplash.com/collection/494263/800x600" />
+              <nuxt-img preload class="h-full w-full shadow lazy" src="https://source.unsplash.com/collection/494263/800x600" />
             </div>
 
             <div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">

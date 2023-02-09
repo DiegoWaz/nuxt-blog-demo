@@ -9,8 +9,7 @@
             Loading ...
           </div>
           <div class="flex h-full bg-white rounded overflow-hidden shadow-lg" v-else>
-            <a
-              href="post.html"
+            <div
               class="flex flex-wrap no-underline hover:no-underline"
             >
               <div class="w-full md:w-2/3 rounded-t">
@@ -26,7 +25,7 @@
                 </div>
 
               </div>
-            </a>
+            </div>
           </div>
           <!--/Lead Card-->
 
@@ -42,7 +41,7 @@
                 class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg"
               >
               <NuxtLink class="flex flex-wrap no-underline" :to="`/blog/${post.id}`">
-                  <nuxt-img class="h-64 w-full rounded-t pb-6 object-cover lazy" :src="post.yoast_head_json.og_image[0].url" />
+                  <nuxt-img preload class="h-64 w-full rounded-t pb-6 object-cover lazy" :src="post.yoast_head_json.og_image[0].url" />
                   <div class="w-full font-bold text-xl text-gray-900 px-6">
                     {{ post.title.rendered }}
                   </div>
@@ -60,7 +59,7 @@
   </template>
 
 
-<script setup>
+<script lang="ts" setup>
   import { usePostStore } from '~/store/article'
   import { storeToRefs } from 'pinia'
   import { useRoute } from 'vue-router';
@@ -71,7 +70,4 @@
   const { fetchPost, fetchPosts, fetch } = usePostStore()
   fetchPost(route.params.id);
   fetchPosts();
-
-  console.log(fetchPost, post)
 </script>
-

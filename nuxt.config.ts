@@ -8,5 +8,12 @@ export default defineNuxtConfig({
     css: ["~/assets/css/tailwind.css"],
     image: {
         // Options
-    }
+    },
+    builder: "webpack",
+    components: [
+        {
+            path: "./components/",
+            pathPrefix: false
+        }
+    ]
 })
